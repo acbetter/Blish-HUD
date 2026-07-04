@@ -179,9 +179,6 @@ namespace Blish_HUD {
                 this.StayInTray.SetDisabled();
             }
 
-            // TODO: See https://github.com/blish-hud/Blish-HUD/issues/282
-            this.UserLocale.SetExcluded(Locale.Chinese);
-
             this.ShowInTaskbar.SettingChanged += ShowInTaskbarOnSettingChanged;
             this.UserLocale.SettingChanged    += UserLocaleOnSettingChanged;
 
@@ -225,8 +222,8 @@ namespace Blish_HUD {
         private void UserLocaleOnSettingChanged(object sender, ValueChangedEventArgs<Locale> e) {
             var culture = GetCultureFromGw2Locale(e.NewValue);
 
-            // Update the UI culture for the entire application domain by setting DefaultThreadCurrentUICulture
-            // DO NOT change CurrentUICulture, otherwise running threads will NOT get updated with the new default.
+            // Update both the current UI thread and the default used by new threads.
+            CultureInfo.CurrentUICulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
 
             this.UserLocaleChanged?.Invoke(this, new ValueEventArgs<CultureInfo>(culture));
@@ -286,7 +283,7 @@ namespace Blish_HUD {
                 case Locale.Korean:
                     return CultureInfo.GetCultureInfo(18); // Korean (ko-KR)
                 case Locale.Chinese:
-                    return CultureInfo.GetCultureInfo(30724); // Chinese (zh-CN)
+                    return CultureInfo.GetCultureInfo("zh-CN"); // Chinese (Simplified, China)
             }
 
             return CultureInfo.GetCultureInfo(9); // English (en-US)

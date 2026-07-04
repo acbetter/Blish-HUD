@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?><root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TokenPermissionDescription_Account" xml:space="preserve">
+    <value>你的账号显示名称、ID、家园世界和公会列表。</value>
+  </data>
+  <data name="TokenPermissionDescription_Inventories" xml:space="preserve">
+    <value>你的账号银行、材料仓库、配方解锁和角色背包。</value>
+  </data>
+  <data name="TokenPermissionDescription_Characters" xml:space="preserve">
+    <value>你的角色基础信息。</value>
+  </data>
+  <data name="TokenPermissionDescription_Tradingpost" xml:space="preserve">
+    <value>你的交易所交易记录。</value>
+  </data>
+  <data name="TokenPermissionDescription_Wallet" xml:space="preserve">
+    <value>你的账号钱包。</value>
+  </data>
+  <data name="TokenPermissionDescription_Unlocks" xml:space="preserve">
+    <value>你的衣柜解锁，包括皮肤、染料、迷你宠物、终结技等，以及当前装备的皮肤。</value>
+  </data>
+  <data name="TokenPermissionDescription_Pvp" xml:space="preserve">
+    <value>你的 PvP 统计、比赛历史、奖励分支进度和自定义竞技场详情。</value>
+  </data>
+  <data name="TokenPermissionDescription_Builds" xml:space="preserve">
+    <value>你在所有游戏模式下当前装备的专精、特性、技能和装备。</value>
+  </data>
+  <data name="TokenPermissionDescription_Progression" xml:space="preserve">
+    <value>你的成就、副本解锁状态、专精点分配和常规 PvE 进度。</value>
+  </data>
+  <data name="TokenPermissionDescription_Guilds" xml:space="preserve">
+    <value>你所属所有公会的成员名单、历史记录和每日公告。</value>
+  </data>
+  <data name="TokenStatus_InvalidToken" xml:space="preserve">
+    <value>无效密钥</value>
+  </data>
+  <data name="TokenStatus_AccountFailed" xml:space="preserve">
+    <value>获取账号详情失败</value>
+  </data>
+  <data name="TokenStatus_PartialPermission" xml:space="preserve">
+    <value>密钥缺少权限</value>
+  </data>
+  <data name="TokenStatus_ValidToken" xml:space="preserve">
+    <value>{0} ({1}) - 有效密钥</value>
+  </data>
+  <data name="Token_NoName" xml:space="preserve">
+    <value>（无名称）</value>
+  </data>
+  <data name="ManageApiKeys_Title" xml:space="preserve">
+    <value>注册 API 密钥</value>
+  </data>
+  <data name="ManageApiKeys_Register" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="ManageApiKeys_DeleteToken" xml:space="preserve">
+    <value>删除密钥</value>
+  </data>
+  <data name="AccountInfo_Commander" xml:space="preserve">
+    <value>指挥官</value>
+  </data>
+  <data name="AccountInfo_Character" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="TokenStatus_MissingMinPermission" xml:space="preserve">
+    <value>缺少必需权限</value>
+  </data>
+  <data name="CreateTokenInstructions_Warning" xml:space="preserve">
+    <value>你可以注册不含全部权限的密钥，但某些
+功能和模块可能无法正常工作。
+
+至少需要 Account 和 Character 权限。</value>
+  </data>
+  <data name="CreateTokenInstructions_Step1" xml:space="preserve">
+    <value>打开官方应用程序页面。</value>
+  </data>
+  <data name="Link_ManageApplications" xml:space="preserve">
+    <value>管理应用程序</value>
+  </data>
+  <data name="CreateTokenInstructions_Step2" xml:space="preserve">
+    <value>点击 New Key。</value>
+  </data>
+  <data name="CreateTokenInstructions_Step3" xml:space="preserve">
+    <value>选择全部权限，然后点击
+CREATE API KEY 按钮。</value>
+  </data>
+  <data name="CreateTokenInstructions_Step4" xml:space="preserve">
+    <value>复制新的密钥。</value>
+  </data>
+  <data name="CreateTokenInstructions_Step5" xml:space="preserve">
+    <value>将密钥粘贴到上方输入框，
+然后点击注册。</value>
+  </data>
+  <data name="ManageApiKeysSection" xml:space="preserve">
+    <value>管理 API 密钥</value>
+  </data>
+  <data name="TokenStatus_FailedToLoad" xml:space="preserve">
+    <value>密钥加载失败。</value>
+  </data>
+  <data name="TokenRegion_NorthAmerica" xml:space="preserve">
+    <value>美国 / 北美</value>
+  </data>
+  <data name="TokenRegion_Europe" xml:space="preserve">
+    <value>欧洲</value>
+  </data>
+  <data name="TokenRegion_France" xml:space="preserve">
+    <value>法国</value>
+  </data>
+  <data name="TokenRegion_Germany" xml:space="preserve">
+    <value>德国</value>
+  </data>
+  <data name="TokenRegion_Spain" xml:space="preserve">
+    <value>西班牙</value>
+  </data>
+  <data name="TokenLoading_TokenInfo" xml:space="preserve">
+    <value>密钥信息</value>
+  </data>
+  <data name="TokenLoading_AccountDetails" xml:space="preserve">
+    <value>账号详情</value>
+  </data>
+  <data name="TokenLoading_Characters" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="TokenLoading_Status" xml:space="preserve">
+    <value>正在加载 {0}...</value>
+  </data>
+  <data name="TokenLoading_HandlingResponse" xml:space="preserve">
+    <value>正在处理 API 响应...</value>
+  </data>
+</root>

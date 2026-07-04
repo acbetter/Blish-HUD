@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?><root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="HomeTab" xml:space="preserve">
+    <value>主页</value>
+    <comment>The name of the home tab in the primary Blish HUD tabbed window shown when the mouse hovers over the tab.</comment>
+  </data>
+  <data name="AboutSection" xml:space="preserve">
+    <value>关于</value>
+    <comment>The name of the about menu item and section that is shown in the settings.</comment>
+  </data>
+  <data name="OverlaySettingsSection" xml:space="preserve">
+    <value>覆盖层设置</value>
+    <comment>The name of the overlay settings menu item and section that is shown in the settings.</comment>
+  </data>
+  <data name="AboutLoveMessage" xml:space="preserve">
+    <value>由 Blish HUD 团队和更多贡献者
+倾注心力设计与构建！</value>
+  </data>
+  <data name="Setting_ShowInTaskbar_Description" xml:space="preserve">
+    <value>启用后，Blish HUD 运行时会显示在任务栏中。</value>
+  </data>
+  <data name="Setting_ShowInTaskbar_DisplayName" xml:space="preserve">
+    <value>显示在任务栏</value>
+  </data>
+  <data name="Setting_StayInTray_DisplayName" xml:space="preserve">
+    <value>Guild Wars 2 关闭时最小化到托盘。</value>
+  </data>
+  <data name="Setting_AppCulture_Description" xml:space="preserve">
+    <value>决定 Blish HUD 文本显示以及向 GW2 Web API 发起请求时使用的语言。</value>
+  </data>
+  <data name="Setting_AppCulture_DisplayName" xml:space="preserve">
+    <value>应用和 API 语言</value>
+  </data>
+  <data name="Setting_StayInTray_Description" xml:space="preserve">
+    <value>如果为 true，GW2 关闭时 Blish HUD 会自动最小化，并继续运行直到再次启动 GW2。
+你也可以使用托盘中的 Blish HUD 图标启动 Guild Wars 2。</value>
+  </data>
+  <data name="AboutAnetNotice" xml:space="preserve">
+    <value>©2010-{0} ArenaNet, LLC. 保留所有权利。Guild Wars、Guild Wars 2、Heart of Thorns、
+Guild Wars 2: Path of Fire、ArenaNet、NCSOFT、互锁 NC 标志以及所有相关
+标志和设计均为 NCSOFT Corporation 的商标或注册商标。其他所有
+商标均归其各自所有者所有。</value>
+  </data>
+  <data name="Setting_UseGameVolume_Description" xml:space="preserve">
+    <value>启用后，Blish HUD 会根据游戏音频调整自身音量。</value>
+  </data>
+  <data name="Setting_UseGameVolume_DisplayName" xml:space="preserve">
+    <value>使用游戏音量</value>
+  </data>
+  <data name="Setting_Volume_DisplayName" xml:space="preserve">
+    <value>音量</value>
+  </data>
+  <data name="Setting_Volume_Description" xml:space="preserve">
+    <value>决定 Blish HUD 的音量。仅在使用游戏音量停用时生效。</value>
+  </data>
+  <data name="Setting_AudioDevice_DisplayName" xml:space="preserve">
+    <value>音频输出设备</value>
+  </data>
+  <data name="Setting_AudioDevice_Description" xml:space="preserve">
+    <value>决定 Blish HUD 使用的音频输出设备。Gw2OutputDevice 会自动调整为 GW2 正在使用的设备。</value>
+  </data>
+  <data name="Setting_CloseWindowOnEscape_Description" xml:space="preserve">
+    <value>当 Blish 窗口获得焦点并按下 Escape 键时关闭窗口</value>
+  </data>
+  <data name="Setting_CloseWindowOnEscape_DisplayName" xml:space="preserve">
+    <value>按 Escape 关闭窗口</value>
+  </data>
+  <data name="Setting_HideInterfaceKeybind_Description" xml:space="preserve">
+    <value>隐藏所有 Blish 界面以便精美截图</value>
+  </data>
+  <data name="Setting_HideInterfaceKeybind_DisplayName" xml:space="preserve">
+    <value>隐藏界面</value>
+  </data>
+  <data name="ConnectionStatus_Mumble_Name" xml:space="preserve">
+    <value>MumbleLink</value>
+  </data>
+  <data name="ConnectionStatus_Mumble_Disconnected" xml:space="preserve">
+    <value>无法连接到名为 '{0}' 的 MumbleLink。
+
+请检查启动 Guild Wars 2 和 Blish HUD 时
+使用了哪些启动参数。</value>
+  </data>
+  <data name="ConnectionStatus_Mumble_Connected" xml:space="preserve">
+    <value>已连接到名为 '{0}' 的 MumbleLink。</value>
+  </data>
+  <data name="ConnectionStatus_ArcDPSBridge_Name" xml:space="preserve">
+    <value>ArcDPS Bridge</value>
+  </data>
+  <data name="ConnectionStatus_ArcDPSBridge_Connected" xml:space="preserve">
+    <value>已通过桥接插件连接到 ArcDPS。</value>
+  </data>
+  <data name="ConnectionStatus_ArcDPSBridge_Disconnected" xml:space="preserve">
+    <value>未收到来自桥接插件的连接。
+
+它可能尚未安装。</value>
+  </data>
+  <data name="Setting_ToggleBlishWindowKeybind_Description" xml:space="preserve">
+    <value>设置切换 Blish HUD 主窗口的快捷键</value>
+  </data>
+  <data name="Setting_ToggleBlishWindowKeybind_DisplayName" xml:space="preserve">
+    <value>切换 Blish HUD 窗口</value>
+  </data>
+  <data name="Setting_DynamicHUDMenuBar_Description" xml:space="preserve">
+    <value>控制屏幕左上角菜单栏的可见性。</value>
+  </data>
+  <data name="Setting_DynamicHUDMenuBar_DisplayName" xml:space="preserve">
+    <value>菜单栏</value>
+  </data>
+  <data name="SelfUpdate_NewUpdateAvailable" xml:space="preserve">
+    <value>有新正式版本可用</value>
+  </data>
+  <data name="SelfUpdate_ChangesInVersion" xml:space="preserve">
+    <value>v{0} 中的变更</value>
+  </data>
+  <data name="SelfUpdate_UpdateToReleaseMenuStripText" xml:space="preserve">
+    <value>更新到正式版 v{0}</value>
+  </data>
+  <data name="SelfUpdate_UpdateToPrereleaseMenuStripText" xml:space="preserve">
+    <value>更新到预览版 v{0}</value>
+  </data>
+  <data name="SelfUpdate_NoPendingUpdates" xml:space="preserve">
+    <value>没有待处理更新</value>
+  </data>
+  <data name="SelfUpdate_Progress_DownloadingReleaseArchive" xml:space="preserve">
+    <value>正在下载正式版 v{0}...</value>
+  </data>
+  <data name="SelfUpdate_Progress_VerifyingChecksum" xml:space="preserve">
+    <value>正在验证校验和...</value>
+  </data>
+  <data name="SelfUpdate_Progress_ExtractingExecutable" xml:space="preserve">
+    <value>正在解压新可执行文件...</value>
+  </data>
+  <data name="SelfUpdate_Progress_DownloadingPrereleaseArchive" xml:space="preserve">
+    <value>正在下载预览版 v{0}...</value>
+  </data>
+  <data name="SelfUpdate_PendingUpdatesQueryFailed" xml:space="preserve">
+    <value>检查更新失败</value>
+  </data>
+  <data name="SelfUpdate_Progress_RestartingIn" xml:space="preserve">
+    <value>{0} 后重启...</value>
+  </data>
+  <data name="SelfUpdate_Progress_Restarting" xml:space="preserve">
+    <value>正在重启...</value>
+  </data>
+  <data name="Setting_InteractKey_Description" xml:space="preserve">
+    <value>用于与环境互动。
+为了获得最佳体验，请将其设置为与游戏中相同的按键。</value>
+  </data>
+  <data name="Setting_InteractKey_DisplayName" xml:space="preserve">
+    <value>互动</value>
+  </data>
+  <data name="Setting_ShowPreviews_DisplayName" xml:space="preserve">
+    <value>预览版本</value>
+  </data>
+  <data name="Setting_ShowPreviews_Description" xml:space="preserve">
+    <value>启用后，可以通过界面获取模块和 Blish HUD 本身的预发布版本。
+
+警告：预发布模块或 Blish HUD 版本可能不稳定。启用此功能即表示你确认愿意承担崩溃、错误或其他问题的风险。除非你愿意遇到这些问题，否则请勿使用预发布模块 / Blish HUD 版本。</value>
+  </data>
+  <data name="OverlayDynamicHUDSection" xml:space="preserve">
+    <value>动态 HUD</value>
+  </data>
+  <data name="Setting_DynamicHUDLoading_Description" xml:space="preserve">
+    <value>控制过场动画和加载画面期间的可见性。</value>
+  </data>
+  <data name="Setting_DynamicHUDLoading_DisplayName" xml:space="preserve">
+    <value>过场动画 / 加载画面</value>
+  </data>
+  <data name="Setting_DynamicHUDWindows_Description" xml:space="preserve">
+    <value>控制窗口的可见性。</value>
+  </data>
+  <data name="Setting_DynamicHUDWindows_DisplayName" xml:space="preserve">
+    <value>窗口</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+  <data name="AboutThirdPartySoftware" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\obj\ThirdPartySoftware.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="AboutThirdPartySoftwareHeading" xml:space="preserve">
+    <value>软件许可</value>
+  </data>
+  <data name="Setting_StayInTray_AppendDisabled" xml:space="preserve">
+    <value>（由于你使用 --startgw2、--pid、-g 或 -P 启动了 Blish HUD，此项已禁用）</value>
+  </data>
+  <data name="About_DiscordCallToAction1" xml:space="preserve">
+    <value> 
+Blish HUD 的大部分反馈、开发和其他讨论都在我们的</value>
+  </data>
+  <data name="About_DiscordCallToAction2" xml:space="preserve">
+    <value>Discord</value>
+  </data>
+  <data name="About_DiscordCallToAction3" xml:space="preserve">
+    <value> 频道中进行。
+ </value>
+  </data>
+  <data name="About_DiscordCallToAction_Question" xml:space="preserve">
+    <value> 
+需要帮助，或者想要
+参与讨论？</value>
+  </data>
+  <data name="About_DiscordCallToAction_Button" xml:space="preserve">
+    <value>加入我们的 Discord</value>
+  </data>
+  <data name="SelfUpdate_NewPrereleaseAvailable" xml:space="preserve">
+    <value>有新预览版本可用</value>
+  </data>
+  <data name="Setting_MuteIfNoGameAudio_Description" xml:space="preserve">
+    <value>启用后，当游戏没有发出声音时，Blish HUD 也会静音。</value>
+  </data>
+  <data name="Setting_MuteIfNoGameAudio_DisplayName" xml:space="preserve">
+    <value>游戏静音时一并静音。</value>
+  </data>
+</root>

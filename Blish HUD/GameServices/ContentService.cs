@@ -6,10 +6,14 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.BitmapFonts;
 using SpriteFontPlus;
 using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
+using System.Resources;
 using System.Text.RegularExpressions;
 
 namespace Blish_HUD {
@@ -61,20 +65,19 @@ namespace Blish_HUD {
 
         private IDataReader _audioDataReader;
 
-        private BitmapFont  _defaultFont12;
-        public  BitmapFont  DefaultFont12 => _defaultFont12 ??= GetFont(FontFace.Menomonia, FontSize.Size12, FontStyle.Regular);
+        private const int CJK_TEXTURE_SIZE = 2048;
 
-        private BitmapFont _defaultFont14;
-        public  BitmapFont DefaultFont14 => _defaultFont14 ??= GetFont(FontFace.Menomonia, FontSize.Size14, FontStyle.Regular);
+        private static readonly Lazy<IReadOnlyList<CharacterRange>> _chineseUiFontRanges = new Lazy<IReadOnlyList<CharacterRange>>(GetChineseUiFontRanges);
 
-        private BitmapFont _defaultFont16;
-        public  BitmapFont DefaultFont16 => _defaultFont16 ??= GetFont(FontFace.Menomonia, FontSize.Size16, FontStyle.Regular);
+        public BitmapFont DefaultFont12 => GetFont(FontFace.Menomonia, FontSize.Size12, FontStyle.Regular);
 
-        private BitmapFont _defaultFont18;
-        public  BitmapFont DefaultFont18 => _defaultFont18 ??= GetFont(FontFace.Menomonia, FontSize.Size18, FontStyle.Regular);
+        public BitmapFont DefaultFont14 => GetFont(FontFace.Menomonia, FontSize.Size14, FontStyle.Regular);
 
-        private BitmapFont _defaultFont32;
-        public  BitmapFont DefaultFont32 => _defaultFont32 ??= GetFont(FontFace.Menomonia, FontSize.Size32, FontStyle.Regular);
+        public BitmapFont DefaultFont16 => GetFont(FontFace.Menomonia, FontSize.Size16, FontStyle.Regular);
+
+        public BitmapFont DefaultFont18 => GetFont(FontFace.Menomonia, FontSize.Size18, FontStyle.Regular);
+
+        public BitmapFont DefaultFont32 => GetFont(FontFace.Menomonia, FontSize.Size32, FontStyle.Regular);
 
         public enum FontFace {
             Menomonia
@@ -268,7 +271,138 @@ namespace Blish_HUD {
 
         #endregion
 
+        private static IReadOnlyList<CharacterRange> GetChineseUiFontRanges() {
+            var ranges = new List<CharacterRange>(FontUtil.GetRanges(Gw2FontRanges.Default));
+
+            foreach (var cjkRange in GetCharacterRanges(GetChineseUiCharacters())) {
+                ranges.Add(cjkRange);
+            }
+
+            return ranges;
+        }
+
+        private static string GetChineseUiCharacters() {
+            var characters = new HashSet<char>();
+            var assembly   = typeof(ContentService).Assembly;
+            var culture    = CultureInfo.GetCultureInfo("zh-CN");
+
+            foreach (string resourceName in assembly.GetManifestResourceNames().Where(IsStringResourceName)) {
+                string baseName = resourceName.Substring(0, resourceName.Length - ".resources".Length);
+
+                try {
+                    ResourceSet resourceSet = new ResourceManager(baseName, assembly).GetResourceSet(culture, true, true);
+
+                    if (resourceSet == null) {
+                        continue;
+                    }
+
+                    foreach (DictionaryEntry entry in resourceSet) {
+                        if (entry.Value is string value) {
+                            foreach (char character in value) {
+                                if (character >= 0x2E80) {
+                                    characters.Add(character);
+                                }
+                            }
+                        }
+                    }
+                } catch (MissingManifestResourceException) {
+                    Logger.Debug("Unable to inspect string resource {resourceName} for Chinese UI font characters.", resourceName);
+                }
+            }
+
+            return new string(characters.OrderBy(c => c).ToArray());
+        }
+
+        private static bool IsStringResourceName(string resourceName) {
+            return resourceName.StartsWith("Blish_HUD.Strings.", StringComparison.Ordinal)
+                && resourceName.EndsWith(".resources", StringComparison.Ordinal);
+        }
+
+        private static IEnumerable<CharacterRange> GetCharacterRanges(string characters) {
+            var sortedCharacters = characters.Distinct().OrderBy(c => c).ToList();
+
+            if (sortedCharacters.Count == 0) {
+                yield break;
+            }
+
+            char rangeStart = sortedCharacters[0];
+            char previous   = rangeStart;
+
+            for (int i = 1; i < sortedCharacters.Count; i++) {
+                char current = sortedCharacters[i];
+
+                if (current == previous + 1) {
+                    previous = current;
+                    continue;
+                }
+
+                yield return new CharacterRange(rangeStart, previous);
+
+                rangeStart = current;
+                previous   = current;
+            }
+
+            yield return new CharacterRange(rangeStart, previous);
+        }
+
+        private static bool IsChineseUiCulture() {
+            return CultureInfo.CurrentUICulture.Name.StartsWith("zh", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static string GetChineseFontFilePath(FontStyle style) {
+            string fontFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Fonts");
+            string[] candidates = style == FontStyle.Bold
+                                      ? new[] { "Dengb.ttf", "simhei.ttf", "NotoSansSC-VF.ttf", "Deng.ttf", "simsunb.ttf" }
+                                      : new[] { "Deng.ttf", "simhei.ttf", "NotoSansSC-VF.ttf", "simsunb.ttf" };
+
+            return candidates.Select(candidate => Path.Combine(fontFolder, candidate))
+                             .FirstOrDefault(File.Exists);
+        }
+
+        private BitmapFont GetChineseFont(FontFace font, FontSize size, FontStyle style) {
+            string fontPath = GetChineseFontFilePath(style);
+
+            if (fontPath == null) {
+                Logger.Warn("Unable to find a Windows CJK font. Falling back to {fontFace}.", font);
+                return null;
+            }
+
+            string fullFontName = $"zh-cn-{Path.GetFileNameWithoutExtension(fontPath).ToLowerInvariant()}-{((int)size).ToString()}-{style.ToString().ToLowerInvariant()}";
+
+            if (!_loadedBitmapFonts.ContainsKey(fullFontName)) {
+                try {
+                    using var ctx = GameService.Graphics.LendGraphicsDeviceContext();
+
+                    var loadedFont = TtfFontBaker.Bake(File.ReadAllBytes(fontPath),
+                                                       (int)size,
+                                                       CJK_TEXTURE_SIZE,
+                                                       CJK_TEXTURE_SIZE,
+                                                       _chineseUiFontRanges.Value)
+                                                .CreateSpriteFont(ctx.GraphicsDevice)
+                                                .ToBitmapFont();
+
+                    loadedFont.LetterSpacing = 0;
+                    _loadedBitmapFonts.TryAdd(fullFontName, loadedFont);
+
+                    return loadedFont;
+                } catch (Exception ex) {
+                    Logger.Warn(ex, "Unable to load Chinese UI font {fontPath}. Falling back to {fontFace}.", fontPath, font);
+                    return null;
+                }
+            }
+
+            return _loadedBitmapFonts[fullFontName];
+        }
+
         public BitmapFont GetFont(FontFace font, FontSize size, FontStyle style) {
+            if (font == FontFace.Menomonia && IsChineseUiCulture()) {
+                var chineseFont = GetChineseFont(font, size, style);
+
+                if (chineseFont != null) {
+                    return chineseFont;
+                }
+            }
+
             string fullFontName = $"{font.ToString().ToLowerInvariant()}-{((int)size).ToString()}-{style.ToString().ToLowerInvariant()}";
 
             if (!_loadedBitmapFonts.ContainsKey(fullFontName)) {

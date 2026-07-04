@@ -33,7 +33,7 @@ namespace Blish_HUD {
         private const string MODULE_MANIFESTNAME = "manifest.json";
 
         private const string MODULE_COMPATIBILITYLIST = "compatibility.json";
-        private const string MODULE_SPOILEDURI        = "https://pkgs.blishhud.com/spoiled.json";
+        private const string MODULE_SPOILEDURI        = "https://ezgame.cc/mirror/blish/spoiled.json";
 
         public event EventHandler<ValueEventArgs<ModuleManager>> ModuleRegistered;
         public event EventHandler<ValueEventArgs<ModuleManager>> ModuleUnregistered;

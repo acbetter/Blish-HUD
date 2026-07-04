@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?><root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Win32AccessDenied_Title" xml:space="preserve">
+    <value>Blish HUD 访问被拒绝！</value>
+  </data>
+  <data name="Win32AccessDenied_Description" xml:space="preserve">
+    <value>Blish HUD 无法访问 Guild Wars 2 进程。它很可能是以管理员身份启动的。
+
+请以管理员身份重新启动 Blish HUD，或在不使用管理员权限的情况下重新启动 Guild Wars 2。</value>
+  </data>
+  <data name="GenericUrl_Footer" xml:space="preserve">
+    <value>查看我们的&lt;a href=&quot;{0}&quot;&gt;故障排查指南&lt;/a&gt;了解此问题，或加入我们的 &lt;a href=&quot;{1}&quot;&gt;Discord help 频道&lt;/a&gt;。</value>
+  </data>
+  <data name="ArcDpsSameDir_Description" xml:space="preserve">
+    <value>Blish HUD 所在目录中存在自定义的 'd3d11.dll'（例如 ArcDPS），它会尝试注入 Blish HUD 并导致崩溃。请将 Blish HUD 解压到其他文件夹。</value>
+  </data>
+  <data name="ArcDpsSameDir_Title" xml:space="preserve">
+    <value>Blish HUD 无法运行！</value>
+  </data>
+  <data name="MissingRef_Title" xml:space="preserve">
+    <value>Blish HUD 需要重新解压！</value>
+  </data>
+  <data name="MissingRef_Description" xml:space="preserve">
+    <value>Blish HUD 无法找到 ref.dat 文件。下载 Blish HUD 后，请确保从 zip 中解压全部文件，并确认它们与 Blish HUD.exe 位于同一目录。</value>
+  </data>
+  <data name="FileSaveAccessDenied_Title" xml:space="preserve">
+    <value>Blish HUD 保存数据被阻止！</value>
+  </data>
+  <data name="FileSaveAccessDenied_Description" xml:space="preserve">
+    <value>Blish HUD 保存到 '{0}' {1} 时被主动阻止。
+
+这通常是防病毒软件或 Windows 的受控文件夹访问功能导致的。请确保 Blish HUD 已在防病毒软件中明确加入允许列表。</value>
+  </data>
+  <data name="HttpAccessDenied_Title" xml:space="preserve">
+    <value>网络访问被阻止！</value>
+  </data>
+  <data name="HttpAccessDenied_Description" xml:space="preserve">
+    <value>有程序明确阻止了我们发起网络请求 {0}。
+
+如果你使用防病毒软件或第三方防火墙工具，请确保 Blish HUD 已在其过滤规则中手动排除。</value>
+  </data>
+  <data name="CoreUpdateFailed_Title" xml:space="preserve">
+    <value>更新失败！</value>
+  </data>
+  <data name="CoreUpdateFailed_Description" xml:space="preserve">
+    <value>Blish HUD 更新到 v{0} 失败。请重新启动 Blish HUD 后再试。错误信息：
+
+{1}</value>
+  </data>
+  <data name="FileSaveAccessDenied_Action_ToUpdate" xml:space="preserve">
+    <value>以更新 Blish HUD</value>
+  </data>
+  <data name="FileSaveAccessDenied_Action_ToLoadSettings" xml:space="preserve">
+    <value>以加载你的设置</value>
+  </data>
+  <data name="FileSaveAccessDenied_Action_ToSaveSettings" xml:space="preserve">
+    <value>以保存你的设置</value>
+  </data>
+  <data name="CoreUpdateFailed_Description_Timeout" xml:space="preserve">
+    <value>还有其他 Blish HUD 实例正在运行。请先关闭其他实例，然后再次运行 Blish HUD 以完成更新。</value>
+  </data>
+  <data name="CfaBlocking_Title" xml:space="preserve">
+    <value>Blish HUD 被阻止！</value>
+  </data>
+  <data name="CfaBlocking_Description" xml:space="preserve">
+    <value>Blish HUD 保存到 '{0}' 时被类似 Windows 受控文件夹访问的功能主动阻止。
+
+请在受控文件夹访问设置中明确允许 Blish HUD，或查看下方链接的故障排查指南。</value>
+  </data>
+  <data name="NvidiaSettings_Description" xml:space="preserve">
+    <value>你的某项 NVIDIA 设置被改成了与 Blish HUD 不兼容的状态（Blish HUD 会显示黑色背景）。
+
+以下设置必须恢复为默认值：
+{0}
+
+请查看链接的故障排查指南了解如何解决此问题。</value>
+  </data>
+  <data name="NvidiaSettings_OpenControlPanelAction" xml:space="preserve">
+    <value>打开 NVIDIA 控制面板</value>
+  </data>
+  <data name="NvidiaSettings_Title" xml:space="preserve">
+    <value>NVIDIA 设置不兼容</value>
+  </data>
+  <data name="ConflictingFullscreenSettings_Title" xml:space="preserve">
+    <value>图形设置冲突！</value>
+  </data>
+  <data name="ConflictingFullscreenSettings_Description" xml:space="preserve">
+    <value>Blish HUD 检测到你正在全屏模式下启用 DirectX 9 运行游戏。Blish HUD 无法在此配置下正常工作。要解决此问题，请：
+
+1) 在游戏图形选项中取消勾选启用 DX9 渲染（已弃用）。
+2) 将分辨率设置为窗口全屏或窗口。
+
+你可以参考下方链接的指南获得更多帮助。</value>
+  </data>
+  <data name="NvidiaSettings_Error" xml:space="preserve">
+    <value>'{0}' 不应为 '{1}'</value>
+  </data>
+</root>

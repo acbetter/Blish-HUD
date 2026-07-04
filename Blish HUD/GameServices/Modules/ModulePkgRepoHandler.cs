@@ -24,7 +24,7 @@ namespace Blish_HUD.Modules {
         private const string DEFAULT_REPOURL_SETTING      = "DefaultPkgsUrl";
         private const string ACKNOWLEDGED_UPDATES_SETTING = "AcknowledgedUpdates";
 
-        private const string DEFAULT_BHUDPKGS_REPOURL = "https://pkgs.blishhud.com/";
+        private const string DEFAULT_BHUDPKGS_REPOURL = "https://ezgame.cc/mirror/blish/";
 
         private const string TEXTUREREF_REPOMENU               = "156764-noarrow";
         private const string TEXTUREREF_REPOMENU_PENDINGUPDATE = "156764-update";

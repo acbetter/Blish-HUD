@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using Blish_HUD.Graphics.UI;
 using Blish_HUD.Settings.UI.Views;
@@ -14,8 +15,13 @@ namespace Blish_HUD.Settings.UI.Presenters {
         protected override Task<bool> Load(IProgress<string> progress) {
             this.Model.SettingChanged += ModelOnSettingChanged;
             this.View.ValueChanged    += ViewOnValueChanged;
+            GameService.Overlay.UserLocaleChanged += OverlayOnUserLocaleChanged;
 
             return base.Load(progress);
+        }
+
+        private void OverlayOnUserLocaleChanged(object sender, ValueEventArgs<CultureInfo> e) {
+            UpdateViewDetails();
         }
 
         private void ModelOnSettingChanged(object sender, ValueChangedEventArgs<TSetting> e) {
@@ -67,6 +73,7 @@ namespace Blish_HUD.Settings.UI.Presenters {
         protected override void Unload() {
             this.Model.SettingChanged -= ModelOnSettingChanged;
             this.View.ValueChanged    -= ViewOnValueChanged;
+            GameService.Overlay.UserLocaleChanged -= OverlayOnUserLocaleChanged;
         }
 
     }
