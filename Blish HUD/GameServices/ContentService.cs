@@ -65,9 +65,15 @@ namespace Blish_HUD {
 
         private IDataReader _audioDataReader;
 
-        private const int CJK_TEXTURE_SIZE = 2048;
+        private const int CJK_BASE_TEXTURE_SIZE     = 2048;
+        private const int CJK_EXTENDED_TEXTURE_SIZE = 4096;
+        private const int CJK_EXTENDED_THRESHOLD    = 1600;
+        private const int CJK_MAX_CACHE_CHARACTERS  = 4000;
 
-        private static readonly Lazy<IReadOnlyList<CharacterRange>> _chineseUiFontRanges = new Lazy<IReadOnlyList<CharacterRange>>(GetChineseUiFontRanges);
+        private const string CHINESE_FONT_CACHE_FILE = "zh-cn-glyph-cache.txt";
+
+        private static readonly object             _chineseFontCharacterLock = new object();
+        private static readonly Lazy<HashSet<char>> _chineseFontCharacters   = new Lazy<HashSet<char>>(LoadChineseFontCharacters);
 
         public BitmapFont DefaultFont12 => GetFont(FontFace.Menomonia, FontSize.Size12, FontStyle.Regular);
 
@@ -271,14 +277,38 @@ namespace Blish_HUD {
 
         #endregion
 
-        private static IReadOnlyList<CharacterRange> GetChineseUiFontRanges() {
-            var ranges = new List<CharacterRange>(FontUtil.GetRanges(Gw2FontRanges.Default));
+        private static string ChineseFontCachePath => Path.Combine(DirectoryUtil.CachePath, CHINESE_FONT_CACHE_FILE);
 
-            foreach (var cjkRange in GetCharacterRanges(GetChineseUiCharacters())) {
-                ranges.Add(cjkRange);
+        private static IReadOnlyList<CharacterRange> GetChineseUiFontRanges(out int characterCount) {
+            HashSet<char> characters;
+
+            lock (_chineseFontCharacterLock) {
+                characters = new HashSet<char>(_chineseFontCharacters.Value);
             }
 
+            characterCount = characters.Count;
+
+            var ranges = new List<CharacterRange>(FontUtil.GetRanges(Gw2FontRanges.Default));
+            ranges.AddRange(GetCharacterRanges(characters));
+
             return ranges;
+        }
+
+        private static HashSet<char> LoadChineseFontCharacters() {
+            var characters = new HashSet<char>();
+
+            AddChineseFontCharacters(characters, GetChineseUiCharacters());
+            AddChineseFontCharacters(characters, GetCommonChinesePunctuation());
+
+            try {
+                if (File.Exists(ChineseFontCachePath)) {
+                    AddChineseFontCharacters(characters, File.ReadAllText(ChineseFontCachePath));
+                }
+            } catch (Exception ex) {
+                Logger.Debug(ex, "Unable to read Chinese UI font cache.");
+            }
+
+            return characters;
         }
 
         private static string GetChineseUiCharacters() {
@@ -298,11 +328,7 @@ namespace Blish_HUD {
 
                     foreach (DictionaryEntry entry in resourceSet) {
                         if (entry.Value is string value) {
-                            foreach (char character in value) {
-                                if (character >= 0x2E80) {
-                                    characters.Add(character);
-                                }
-                            }
+                            AddChineseFontCharacters(characters, value);
                         }
                     }
                 } catch (MissingManifestResourceException) {
@@ -313,12 +339,36 @@ namespace Blish_HUD {
             return new string(characters.OrderBy(c => c).ToArray());
         }
 
+        private static string GetCommonChinesePunctuation() {
+            return "\uFF0C\u3002\u3001\uFF1B\uFF1A\uFF1F\uFF01\u300A\u300B\u3008\u3009"
+                 + "\uFF08\uFF09\u3010\u3011\u300C\u300D\u300E\u300F\u201C\u201D"
+                 + "\u2018\u2019\u2014\u2026\u00B7\uFFE5";
+        }
+
         private static bool IsStringResourceName(string resourceName) {
             return resourceName.StartsWith("Blish_HUD.Strings.", StringComparison.Ordinal)
                 && resourceName.EndsWith(".resources", StringComparison.Ordinal);
         }
 
-        private static IEnumerable<CharacterRange> GetCharacterRanges(string characters) {
+        private static void AddChineseFontCharacters(ISet<char> characters, string text) {
+            if (string.IsNullOrEmpty(text)) {
+                return;
+            }
+
+            foreach (char character in text) {
+                if (IsChineseFontCharacter(character)) {
+                    characters.Add(character);
+                }
+            }
+        }
+
+        private static bool IsChineseFontCharacter(char character) {
+            return !char.IsSurrogate(character)
+                && (character >= 0x2E80
+                 || character >= 0x2010 && character <= 0x203B);
+        }
+
+        private static IEnumerable<CharacterRange> GetCharacterRanges(IEnumerable<char> characters) {
             var sortedCharacters = characters.Distinct().OrderBy(c => c).ToList();
 
             if (sortedCharacters.Count == 0) {
@@ -343,6 +393,58 @@ namespace Blish_HUD {
             }
 
             yield return new CharacterRange(rangeStart, previous);
+        }
+
+        private static int GetChineseFontTextureSize(int characterCount) {
+            return characterCount >= CJK_EXTENDED_THRESHOLD
+                       ? CJK_EXTENDED_TEXTURE_SIZE
+                       : CJK_BASE_TEXTURE_SIZE;
+        }
+
+        private static void PersistChineseFontCharacters() {
+            try {
+                Directory.CreateDirectory(DirectoryUtil.CachePath);
+                File.WriteAllText(ChineseFontCachePath, new string(_chineseFontCharacters.Value.OrderBy(c => c).ToArray()));
+            } catch (Exception ex) {
+                Logger.Debug(ex, "Unable to write Chinese UI font cache.");
+            }
+        }
+
+        private static void PurgeLoadedChineseFonts() {
+            foreach (string key in _loadedBitmapFonts.Keys.Where(key => key.StartsWith("zh-cn-", StringComparison.OrdinalIgnoreCase)).ToList()) {
+                _loadedBitmapFonts.TryRemove(key, out _);
+            }
+        }
+
+        public void EnsureChineseFontCharacters(string text) {
+            if (!IsChineseUiCulture() || string.IsNullOrEmpty(text)) {
+                return;
+            }
+
+            bool added = false;
+
+            lock (_chineseFontCharacterLock) {
+                foreach (char character in text) {
+                    if (!IsChineseFontCharacter(character) || _chineseFontCharacters.Value.Contains(character)) {
+                        continue;
+                    }
+
+                    if (_chineseFontCharacters.Value.Count >= CJK_MAX_CACHE_CHARACTERS) {
+                        Logger.Warn("Chinese UI font cache reached the character limit of {characterLimit}.", CJK_MAX_CACHE_CHARACTERS);
+                        break;
+                    }
+
+                    _chineseFontCharacters.Value.Add(character);
+                    added = true;
+                }
+
+                if (!added) {
+                    return;
+                }
+
+                PersistChineseFontCharacters();
+                PurgeLoadedChineseFonts();
+            }
         }
 
         private static bool IsChineseUiCulture() {
@@ -371,13 +473,16 @@ namespace Blish_HUD {
 
             if (!_loadedBitmapFonts.ContainsKey(fullFontName)) {
                 try {
+                    var ranges      = GetChineseUiFontRanges(out int characterCount);
+                    int textureSize = GetChineseFontTextureSize(characterCount);
+
                     using var ctx = GameService.Graphics.LendGraphicsDeviceContext();
 
                     var loadedFont = TtfFontBaker.Bake(File.ReadAllBytes(fontPath),
                                                        (int)size,
-                                                       CJK_TEXTURE_SIZE,
-                                                       CJK_TEXTURE_SIZE,
-                                                       _chineseUiFontRanges.Value)
+                                                       textureSize,
+                                                       textureSize,
+                                                       ranges)
                                                 .CreateSpriteFont(ctx.GraphicsDevice)
                                                 .ToBitmapFont();
 

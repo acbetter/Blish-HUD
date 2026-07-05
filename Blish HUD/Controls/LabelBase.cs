@@ -66,6 +66,8 @@ namespace Blish_HUD.Controls {
         protected Size2 GetTextDimensions(string text = null) {
             text = text ?? _text;
 
+            GameService.Content.EnsureChineseFontCharacters(text);
+
             if (!_autoSizeWidth && _wrapText) {
                 text = DrawUtil.WrapText(_font, text, LabelRegion.X > 0 ? LabelRegion.X : _size.X);
             }

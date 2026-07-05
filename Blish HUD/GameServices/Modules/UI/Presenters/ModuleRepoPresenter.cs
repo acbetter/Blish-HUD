@@ -73,17 +73,22 @@ namespace Blish_HUD.Modules.UI.Presenters {
 
             bool s = true;
 
-            foreach (var pkgManifest in this.Model.GetPkgManifests()
-                                            .Where(m => GameService.Overlay.ShowPreviews.Value || !m.IsPreview)
-                                            .GroupBy(m => m.Namespace)
-                                            .Select(pkgs => pkgs.OrderBy(x => x.Version))
-                                            .OrderByDescending(pkgs => {
-                                                var lastManifest = pkgs.Last();
-                                                var latestInstalledVersion = this.GetCurrentModuleVersion(lastManifest.Namespace);
-                                                var needsUpdate = latestInstalledVersion != null && latestInstalledVersion < lastManifest.Version;
-                                                return needsUpdate;
-                                            }) // Modules with update at top
-                                            .ThenBy(pkgs => pkgs.Last().Name)) {
+            var pkgManifests = this.Model.GetPkgManifests()
+                                   .Where(m => GameService.Overlay.ShowPreviews.Value || !m.IsPreview)
+                                   .GroupBy(m => m.Namespace)
+                                   .Select(pkgs => pkgs.OrderBy(x => x.Version))
+                                   .OrderByDescending(pkgs => {
+                                       var lastManifest = pkgs.Last();
+                                       var latestInstalledVersion = this.GetCurrentModuleVersion(lastManifest.Namespace);
+                                       var needsUpdate = latestInstalledVersion != null && latestInstalledVersion < lastManifest.Version;
+                                       return needsUpdate;
+                                   }) // Modules with update at top
+                                   .ThenBy(pkgs => pkgs.Last().Name)
+                                   .ToList();
+
+            GameService.Content.EnsureChineseFontCharacters(string.Join("\n", pkgManifests.SelectMany(pkgs => pkgs.Select(GetPkgManifestText))));
+
+            foreach (var pkgManifest in pkgManifests) {
                 var nPanel = new ViewContainer {
                     Size             = new Point(this.View.RepoFlowPanel.Width - 25, 64),
                     ShowTint         = (s = !s),
@@ -94,6 +99,18 @@ namespace Blish_HUD.Modules.UI.Presenters {
 
                 nPanel.Show(new ManagePkgView(pkgManifest));
             }
+        }
+
+        private static string GetPkgManifestText(PkgManifest pkgManifest) {
+            string contributors = pkgManifest.Contributors == null
+                                      ? string.Empty
+                                      : string.Join("\n", pkgManifest.Contributors.Select(contributor => contributor.Name));
+
+            string description = pkgManifest is PkgManifestV1 pkgv1
+                                     ? pkgv1.Description
+                                     : string.Empty;
+
+            return string.Join("\n", pkgManifest.Name, pkgManifest.Namespace, contributors, description);
         }
 
     }
